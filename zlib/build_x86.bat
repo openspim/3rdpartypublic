@@ -3,4 +3,4 @@ rem   vcvarall
 rem   popd
 
 
-nmake -f win32/Makefile.msc LOC="-DASMV -DASMINF" OBJA="inffas32.obj match686.obj"
+nmake -f win32/Makefile.msc OBJA="inffast.obj"
