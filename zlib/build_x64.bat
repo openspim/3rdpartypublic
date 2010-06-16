@@ -1,7 +1,8 @@
-rem   pushd "\Program Files\Microsoft Visual Studio 9.0"\vc
-rem   vcvarall
+set path=C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\amd64;%path%
+
+rem   pushd "\Program Files (x86)\Microsoft Visual Studio 9.0"\vc
+rem   vcvarsall amd64
 rem   popd
 
 
-nmake -f win32/Makefile.msc AS=ml64 LOC="-DASMV -DASMINF"  OBJA="inffasx64.obj gvmat64.obj inffas8664.c" 
-
+nmake -f win32/Makefile.msc OBJA="inffast.obj"
