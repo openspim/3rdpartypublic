@@ -1,1 +1,2 @@
 boost http://svn.boost.org/svn/boost/tags/release/Boost_1_43_0/
+sourceext/ij_source/ http://rsb.info.nih.gov/ij/source/
