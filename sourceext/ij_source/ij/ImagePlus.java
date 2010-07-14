@@ -16,7 +16,7 @@ import ij.plugin.Converter;
 
 /**
 An ImagePlus contain an ImageProcessor (2D image) or an ImageStack (3D, 4D or 5D image).
-It also includes metadata (spatial calibration and possibly the directory/file where Ê
+It also includes metadata (spatial calibration and possibly the directory/file where ï¿½
 it was read from). The ImageProcessor contains the pixel data (8-bit, 16-bit, float or RGB) 
 of the 2D image and some basic methods to manipulate it. An ImageStack is essentually 
 a list ImageProcessors of same type and size.
@@ -1176,7 +1176,7 @@ public class ImagePlus implements ImageObserver, Measurements {
 			setSlice((frame-1)*nChannels*nSlices + (slice-1)*nChannels + channel);
 			updatePosition(channel, slice, frame);
 		}
-	}
+   	}
 	
 	/** Sets the current hyperstack position without updating the display,
 		where 'channel', 'slice' and 'frame' are one-based indexes. */
