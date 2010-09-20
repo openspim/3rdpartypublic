@@ -2,6 +2,9 @@
 
 <project name="ImageJ" default="run">
 
+  <target name="jar" depends="build">
+  </target>
+
   <target name="compile" description="Compile everything.">
     <!-- First, ensure the build directory exists. -->
     <mkdir dir="build" />

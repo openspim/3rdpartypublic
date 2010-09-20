@@ -1,5 +1,6 @@
 package ij.gui;
 
+import com.sun.org.apache.xml.internal.security.utils.JavaUtils;
 import java.awt.*;
 import java.awt.image.*;
 import java.util.Properties;
@@ -10,6 +11,8 @@ import ij.io.*;
 import ij.measure.*;
 import ij.plugin.frame.*;
 import ij.macro.Interpreter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** A frame for displaying images. */
 public class ImageWindow extends Frame implements FocusListener, WindowListener, WindowStateListener, MouseWheelListener {
@@ -125,7 +128,20 @@ public class ImageWindow extends Frame implements FocusListener, WindowListener,
 				Interpreter.addBatchModeImage(imp);
 			} else
 				show();
-		}
+      }
+
+      final ImageWindow win = this;
+       new Thread() {
+          public void run() {
+             while (true) {
+                System.out.println(win.getTitle() + ":" + win.getFocusListeners().length);
+                try {
+                   Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                }
+             }
+          }
+      };
      }
     
 	private void setLocationAndSize(boolean updating) {
@@ -508,7 +524,7 @@ public class ImageWindow extends Frame implements FocusListener, WindowListener,
 	}
 	
 	public void focusGained(FocusEvent e) {
-		//IJ.log("focusGained: "+imp.getTitle());
+		System.out.println("ImageWindow.focusGained()");
 		if (!Interpreter.isBatchMode() && ij!=null && !ij.quitting())
 			WindowManager.setCurrentWindow(this);
 	}
