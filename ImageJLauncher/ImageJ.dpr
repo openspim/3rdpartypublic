@@ -41,8 +41,12 @@ PROGRAM ImageJ;
 //    v1.4.3.x - 2006/2/1 - Changed File Description to: "ImageJ Launcher"
 //
 
-USES
-  Windows, SysUtils, ShellAPI, Shared;
+uses
+  Windows,
+  SysUtils,
+  ShellAPI,
+  Shared,
+  OpenDlg in 'OpenDlg.pas';
 
 {$R *.res}
 
@@ -124,7 +128,9 @@ BEGIN
   if (ExtractClassPath(sIJJar,sParamsEx,nil) = -1) then
     Inc(nSaveCfg);
   // Run the program
-  if (ShellExecute(0,nil,PChar(sJVMEx),PChar(sParamsEx),
+  // to convince ourselves that we actually set the soft ref parameter, uncomment this
+  //MessageBox(0,PChar('command is ' + sJVMEx + ' -XX:SoftRefLRUPolicyMSPerMB=1000000000000 ' + sParamsEx), PChar('command debug'), MB_OK );
+  if (ShellExecute(0,nil,PChar(sJVMEx),PChar('-XX:SoftRefLRUPolicyMSPerMB=1000000000000 ' + sParamsEx),
                    PChar(GetCurrentDir),SW_SHOWNORMAL) <=32) then
     FatalError('Could not launch '+TXT_APP+' as configured. Please check the '+
                'settings and try again.','Fatal Error',6)
