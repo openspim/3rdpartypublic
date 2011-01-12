@@ -213,11 +213,46 @@ begin
     Result:=sJVM;
 end;
 
+function IsWindows64: Boolean;
+type
+  TIsWow64Process = function(AHandle:THandle; var AIsWow64: BOOL): BOOL; stdcall;
+var
+  vKernel32Handle: DWORD;
+  vIsWow64Process: TIsWow64Process;
+  vIsWow64       : BOOL;
+begin
+  // 1) assume that we are not running under Windows 64 bit
+  Result := False;
+
+  // 2) Load kernel32.dll library
+  vKernel32Handle := LoadLibrary('kernel32.dll');
+  if (vKernel32Handle = 0) then Exit; // Loading kernel32.dll was failed, just return
+
+  try
+
+    // 3) Load windows api IsWow64Process
+    @vIsWow64Process := GetProcAddress(vKernel32Handle, 'IsWow64Process');
+    if not Assigned(vIsWow64Process) then Exit; // Loading IsWow64Process was failed, just return
+
+    // 4) Execute IsWow64Process against our own process
+    vIsWow64 := False;
+    if (vIsWow64Process(GetCurrentProcess, vIsWow64)) then
+      Result := vIsWow64;   // use the returned value
+
+  finally
+    FreeLibrary(vKernel32Handle);  // unload the library
+  end;
+end;
+
+
 function CreateMemParam(sParams: String): String;
 var
   mst: TMemoryStatus;
   dwMem: DWORD;
+  dwMem2: DWORD;
   nPos: Integer;
+  bIsX64: Boolean;
+  archi: String;
 begin
   Result:='';
   if (sParams <> '') and (EvalSet(Pos(CLP_MEM,sParams),nPos) <> 0) then
@@ -229,11 +264,21 @@ begin
   // Default to 2/3 available physical memory (in MB) or DEF_MEM, whichever is SMALLER 
   if (Result = '') then
     begin
+    // on x64, double the size of DEF_MEM
+      bIsX64:=IsWindows64();
+      if(bIsX64) then
+        archi:='x64'
+      else
+        archi:='x86';
+      MessageBox(0,PChar('detected architecture: ' + archi),PChar('architecture'),MB_OK);
       mst.dwLength:=SizeOf(mst);
       GlobalMemoryStatus(mst);
       dwMem:=(mst.dwTotalPhys div $300000)*2;
-      if (dwMem > DEF_MEM) then
-        dwMem:=DEF_MEM;
+      dwMem2:=DEF_MEM;
+      if  (bIsX64) then
+        dwMem2:=dwMem2*2;
+      if (dwMem > dwMem2) then
+        dwMem:=dwMem2;
       Result:=Format(CLP_MEMFMT,[dwMem]);
     end;
 end;
