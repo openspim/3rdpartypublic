@@ -270,7 +270,7 @@ begin
         archi:='x64'
       else
         archi:='x86';
-      MessageBox(0,PChar('detected architecture: ' + archi),PChar('architecture'),MB_OK);
+     // MessageBox(0,PChar('detected architecture: ' + archi),PChar('architecture'),MB_OK);
       mst.dwLength:=SizeOf(mst);
       GlobalMemoryStatus(mst);
       dwMem:=(mst.dwTotalPhys div $300000)*2;
