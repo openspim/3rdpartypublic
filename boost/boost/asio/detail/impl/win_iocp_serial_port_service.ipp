@@ -84,6 +84,12 @@ boost::system::error_code win_iocp_serial_port_service::open(
   dcb.fDsrSensitivity = FALSE;
   dcb.fNull = FALSE; // Do not ignore NULL characters.
   dcb.fAbortOnError = FALSE; // Ignore serial framing errors.
+  // Work around bad input-bad output bug: http://bugs.python.org/issue3980
+  // Experienced this with USB-seial converter from Silicon Labs
+  if (dcb.XonLim > 4096)
+    dcb.XonLim = 2048;
+  if (dcb.XoffLim > 4096)
+    dcb.XoffLim = 512;   
   if (!::SetCommState(handle, &dcb))
   {
     DWORD last_error = ::GetLastError();
