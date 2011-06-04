@@ -1,0 +1,3 @@
+"libs\regex\build\..\src\static_mutex.cpp" -Fo"build_x64\boost\bin.v2\libs\regex\build\msvc-9.0\debug\address-model-64\architecture-x86\link-static\runtime-link-static\threading-multi\static_mutex.obj"    -TP /Z7 /Od /Ob0 /W4 /GR /MTd /Zc:forScope /Zc:wchar_t /favor:blend /wd4675 /EHs -c 
+-DBOOST_ALL_NO_LIB=1 
+"-I."

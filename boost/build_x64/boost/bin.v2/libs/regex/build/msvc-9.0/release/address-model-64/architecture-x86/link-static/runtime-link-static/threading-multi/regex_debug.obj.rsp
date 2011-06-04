@@ -1,0 +1,4 @@
+"libs\regex\build\..\src\regex_debug.cpp" -Fo"build_x64\boost\bin.v2\libs\regex\build\msvc-9.0\release\address-model-64\architecture-x86\link-static\runtime-link-static\threading-multi\regex_debug.obj"    -TP /O2 /Ob2 /W4 /GR /MT /Zc:forScope /Zc:wchar_t /favor:blend /wd4675 /EHs -c 
+-DBOOST_ALL_NO_LIB=1 
+-DNDEBUG 
+"-I."
