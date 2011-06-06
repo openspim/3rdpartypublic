@@ -90,6 +90,8 @@ boost::system::error_code win_iocp_serial_port_service::open(
     dcb.XonLim = 2048;
   if (dcb.XoffLim > 4096)
     dcb.XoffLim = 512;   
+  // Note that the above did not fix the issue, the following does:
+  dcb.ByteSize = 8;
   if (!::SetCommState(handle, &dcb))
   {
     DWORD last_error = ::GetLastError();
