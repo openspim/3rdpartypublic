@@ -92,6 +92,10 @@ boost::system::error_code win_iocp_serial_port_service::open(
     dcb.XoffLim = 512;   
   // Note that the above did not fix the issue, the following does:
   dcb.ByteSize = 8;
+  // Some versions of the Silcon Labs driver can not deal with the default BaudRate
+  // Force it to a reasonable value
+  dcb.BaudRate = CBR_9600;
+
   if (!::SetCommState(handle, &dcb))
   {
     DWORD last_error = ::GetLastError();
