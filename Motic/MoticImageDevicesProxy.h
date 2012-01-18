@@ -486,19 +486,27 @@ long MIDP_SetColorCorrection(long val);
 
 /**
  * @brief 获取一帧图像数据的指定区域
+ *        Get a image from current frame within a rectangle.
  *
  * @param buffer 缓冲区指针，必须足够容纳将取得的图像数据。
+ *               The frame buffer, must be big enough for containing the image data.
  *        x      图像的水平起始位置 
+ *               Specifies the x-coordinate of the upper-left corner of the image rectangle. 
  *        y      图像的垂直起始位置
+                 Specifies the y-coordinate of the upper-left corner of the image rectangle. 
  *        w      图像的宽度
+                 Specifies the width  of the destination image
  *        h      图像的高度
+                 Specifies the heigh of the destination image
  *        stride 缓冲区的行字节数
+                 specifies the byte offset between the beginning of one line and the next
  *        flip   是否须翻转图像
+                 if the image need to be flipped or not.
  *
  * @return     0 成功; 否则失败
  *             0 succeed, otherwise failed.
  *
- * @see   MIDP_GetFormatEx
+ * @see   MIDP_GetFormat
  */
 long MIDP_GetFrameEx(unsigned char* buffer, long x, long y, long w, long h, long stride, bool flip);
 /**
