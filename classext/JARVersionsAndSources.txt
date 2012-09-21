@@ -1,0 +1,10 @@
+ome-xml.jar, scifio.jar, loci-common.jar
+Bioformats libraries needed for writing OME Tiffs
+Downloaded: 9/2012
+http://loci.wisc.edu/bio-formats/downloads
+
+slf4j-api-1.7.1.jar
+3rd party logging utility used by Bioformats; needed by Bioformats jars which are needed to write OME Tiffs
+Version 1.7.1
+Downloaded: 9/21/2012
+http://www.slf4j.org/download.html
