@@ -8,3 +8,27 @@ slf4j-api-1.7.1.jar
 Version 1.7.1
 Downloaded: 9/21/2012
 http://www.slf4j.org/download.html
+
+AbsoluteLayout.jar
+Classes needed by some GUIs designed in the Netbeans GUI builder.  Inclusion of this file may need to be evaluated from time to time.
+
+TSFProto.jar
+Classes needed to read and write Gaussian fitting data in the Tagged Spot Format. This is to stre single molecule data such as in STORM/PALM imaging.  It uses Google Protocol Buffers under the hood.
+
+gproto.jar
+Compiled version of Google Protocol Buffers (https://developers.google.com/protocol-buffers/).
+
+bsh-2.04b.jar
+Beanshell interpreter and environment
+
+ij.jar
+ImageJ (http://rsbweb.nih.gov/ij/)
+
+jfreechart-1.0.13.jar
+Library used for plotting data (http://www.jfree.org/jfreechart/).
+
+lwm.jar
+Clojure implementation of local weighted maxima algorithm.  No longer needed as there is now Java code to do the same.
+
+
+
