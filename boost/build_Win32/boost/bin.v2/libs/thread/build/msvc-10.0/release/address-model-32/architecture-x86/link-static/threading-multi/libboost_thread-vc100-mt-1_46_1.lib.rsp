@@ -1,0 +1,4 @@
+
+"build_Win32\boost\bin.v2\libs\thread\build\msvc-10.0\release\address-model-32\architecture-x86\link-static\threading-multi\win32\thread.obj" 
+"build_Win32\boost\bin.v2\libs\thread\build\msvc-10.0\release\address-model-32\architecture-x86\link-static\threading-multi\win32\tss_dll.obj" 
+"build_Win32\boost\bin.v2\libs\thread\build\msvc-10.0\release\address-model-32\architecture-x86\link-static\threading-multi\win32\tss_pe.obj"   
