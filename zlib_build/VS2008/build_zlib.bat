@@ -17,12 +17,16 @@ if "%1" == "/F" (
   goto :EOF
 )
 echo.
-echo Before building, you should modify the project files to disable debug
-echo information generation, to prevent linker warnings when linking to the
-echo zlib static libraries.
-echo To do so, open %ZLIB_SRC_ROOT%\contrib\vstudio\vc9\zlibvc.sln, select all
-echo projects, view Properties, select All Configurations and All Platforms,
-echo and set C/C++ ^> General ^> Debug Information Format to Disabled.
+echo Before building, you should modify the project files to link to the DLL
+echo version of the Microsoft C Runtime (/MD or /MDd) in the Win32
+echo configuration. At least in zlib 1.2.8, the x64 configuration already
+echo uses this setting.
+echo.
+echo If MinGW is available, this can be accomplished by running
+echo   sed -i 's/RuntimeLibrary="0"/RuntimeLibrary="2"/' *.vcproj
+echo   sed -i 's/RuntimeLibrary="1"/RuntimeLibrary="3"/' *.vcproj
+echo in zlib/contrib/vstudio/vc9.
+echo.
 echo Rerun this batch file as '%0 /f' to bypass this message.
 goto :EOF
 
