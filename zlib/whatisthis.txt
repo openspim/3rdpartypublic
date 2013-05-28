@@ -1,0 +1,24 @@
+zlib source and libraries
+-------------------------
+
+
+Legacy files (kept to preserve builds for Micro-Manager up to 1.4.14)
+
+bin_Win32/zlib.lib - zlib 1.2.5 static library built with VS2008 (missing PDB)
+bin_x64/zlib.lib - zlib 1.2.5 static library built with VS2008 (missing PDB)
+zconf.h - public header from zlib 1.2.5
+zlib.h - public header from zlib 1.2.5
+
+
+Current files
+
+zlib-1.2.8/ - source for zlib 1.2.8 (contents of tarball)
+zlib-1.2.8-bin/VS2008/ - zlib 1.2.8 built with VS2008
+zlib-1.2.8-bin/VS2008/c_runtime.patch - patch to build Win32 library against DLL version of MS C runtime
+zlib-1.2.8-bin/VS2008/build_zlib.bat - build script
+
+
+Public headers and built libraries should not be moved or removed.
+
+
+- Mark Tsuchida

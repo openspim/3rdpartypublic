@@ -1,0 +1,153 @@
+diff -Naur a/contrib/vstudio/vc9/miniunz.vcproj b/contrib/vstudio/vc9/miniunz.vcproj
+--- a/contrib/vstudio/vc9/miniunz.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/miniunz.vcproj	Mon May 20 14:30:04 2013
+@@ -51,7 +51,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;_DEBUG;_CONSOLE"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				UsePrecompiledHeader="0"
+ 				AssemblerListingLocation="$(IntDir)\"
+@@ -135,7 +135,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;NDEBUG;_CONSOLE"
+ 				StringPooling="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				UsePrecompiledHeader="0"
+diff -Naur a/contrib/vstudio/vc9/minizip.vcproj b/contrib/vstudio/vc9/minizip.vcproj
+--- a/contrib/vstudio/vc9/minizip.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/minizip.vcproj	Mon May 20 14:30:04 2013
+@@ -51,7 +51,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;_DEBUG;_CONSOLE"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				UsePrecompiledHeader="0"
+ 				AssemblerListingLocation="$(IntDir)\"
+@@ -135,7 +135,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;NDEBUG;_CONSOLE"
+ 				StringPooling="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				UsePrecompiledHeader="0"
+diff -Naur a/contrib/vstudio/vc9/testzlib.vcproj b/contrib/vstudio/vc9/testzlib.vcproj
+--- a/contrib/vstudio/vc9/testzlib.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/testzlib.vcproj	Mon May 20 14:30:04 2013
+@@ -51,7 +51,7 @@
+ 				PreprocessorDefinitions="ASMV;ASMINF;WIN32;ZLIB_WINAPI;_DEBUG;_CONSOLE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				UsePrecompiledHeader="0"
+ 				AssemblerOutput="4"
+@@ -282,7 +282,7 @@
+ 				PreprocessorDefinitions="WIN32;ZLIB_WINAPI;NDEBUG;_CONSOLE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				StringPooling="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				UsePrecompiledHeader="0"
+@@ -520,7 +520,7 @@
+ 				PreprocessorDefinitions="ASMV;ASMINF;WIN32;ZLIB_WINAPI;NDEBUG;_CONSOLE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				StringPooling="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				UsePrecompiledHeader="0"
+@@ -602,7 +602,7 @@
+ 				AdditionalIncludeDirectories="..\..\.."
+ 				PreprocessorDefinitions="ASMV;ASMINF;WIN32;ZLIB_WINAPI;NDEBUG;_CONSOLE;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				AssemblerListingLocation="$(IntDir)\"
+ 			/>
+diff -Naur a/contrib/vstudio/vc9/testzlibdll.vcproj b/contrib/vstudio/vc9/testzlibdll.vcproj
+--- a/contrib/vstudio/vc9/testzlibdll.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/testzlibdll.vcproj	Mon May 20 14:30:04 2013
+@@ -51,7 +51,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;_DEBUG;_CONSOLE"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				UsePrecompiledHeader="0"
+ 				AssemblerListingLocation="$(IntDir)\"
+@@ -135,7 +135,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;ZLIB_WINAPI;NDEBUG;_CONSOLE"
+ 				StringPooling="true"
+ 				BasicRuntimeChecks="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				UsePrecompiledHeader="0"
+diff -Naur a/contrib/vstudio/vc9/zlibstat.vcproj b/contrib/vstudio/vc9/zlibstat.vcproj
+--- a/contrib/vstudio/vc9/zlibstat.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/zlibstat.vcproj	Mon May 20 14:30:04 2013
+@@ -50,7 +50,7 @@
+ 				AdditionalIncludeDirectories="..\..\..;..\..\masmx86"
+ 				PreprocessorDefinitions="WIN32;ZLIB_WINAPI;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				ExceptionHandling="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				PrecompiledHeaderFile="$(IntDir)/zlibstat.pch"
+ 				AssemblerListingLocation="$(IntDir)\"
+@@ -272,7 +272,7 @@
+ 				PreprocessorDefinitions="WIN32;ZLIB_WINAPI;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;ASMV;ASMINF"
+ 				StringPooling="true"
+ 				ExceptionHandling="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				PrecompiledHeaderFile="$(IntDir)/zlibstat.pch"
+@@ -495,7 +495,7 @@
+ 				PreprocessorDefinitions="WIN32;ZLIB_WINAPI;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS"
+ 				StringPooling="true"
+ 				ExceptionHandling="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				PrecompiledHeaderFile="$(IntDir)/zlibstat.pch"
+diff -Naur a/contrib/vstudio/vc9/zlibvc.vcproj b/contrib/vstudio/vc9/zlibvc.vcproj
+--- a/contrib/vstudio/vc9/zlibvc.vcproj	Mon May 20 15:26:14 2013
++++ b/contrib/vstudio/vc9/zlibvc.vcproj	Mon May 20 14:30:04 2013
+@@ -56,7 +56,7 @@
+ 				AdditionalIncludeDirectories="..\..\..;..\..\masmx86"
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;ZLIB_WINAPI;ASMV;ASMINF"
+ 				ExceptionHandling="0"
+-				RuntimeLibrary="1"
++				RuntimeLibrary="3"
+ 				BufferSecurityCheck="false"
+ 				PrecompiledHeaderFile="$(IntDir)/zlibvc.pch"
+ 				AssemblerListingLocation="$(IntDir)\"
+@@ -640,7 +640,7 @@
+ 				PreprocessorDefinitions="WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;ZLIB_WINAPI;ASMV;ASMINF"
+ 				StringPooling="true"
+ 				ExceptionHandling="0"
+-				RuntimeLibrary="0"
++				RuntimeLibrary="2"
+ 				BufferSecurityCheck="false"
+ 				EnableFunctionLevelLinking="true"
+ 				PrecompiledHeaderFile="$(IntDir)/zlibvc.pch"
