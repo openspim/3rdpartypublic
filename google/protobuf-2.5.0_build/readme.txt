@@ -14,6 +14,9 @@ No further settings need to be changed (although the output will go to the same
 directory as the Win32 by default, so perhaps add $(Platform) to the output
 directory).
 
+Since we are producing static libraries, it is best to set C/C++ > General >
+Debug Information Format to /Z7, to prevent LNK4099 warnings.
+
 To build from the Visual Studio command line:
 msbuild /p:Configuration=Debug /p:Platform=Win32 protobuf.sln
 msbuild /p:Configuration=Release /p:Platform=Win32 protobuf.sln
