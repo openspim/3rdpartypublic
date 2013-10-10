@@ -1,5 +1,5 @@
 
-Libpng 1.4.5 - December 9, 2010
+Libpng 1.5.13 - September 27, 2012
 
 This is a public release of libpng, intended for use in production codes.
 
@@ -8,47 +8,40 @@ Files available for download:
 Source files with LF line endings (for Unix/Linux) and with a
 "configure" script
 
-   libpng-1.4.5.tar.xz (LZMA-compressed, recommended)
-   libpng-1.4.5.tar.gz
-   libpng-1.4.5.tar.bz2
+   libpng-1.5.13.tar.xz (LZMA-compressed, recommended)
+   libpng-1.5.13.tar.gz
+   libpng-1.5.13.tar.bz2
 
 Source files with CRLF line endings (for Windows), without the
 "configure" script
 
-   lpng145.zip
-   lpng145.7z
+   lpng1513.7z  (LZMA-compressed, recommended)
+   lpng1513.zip
 
 Other information:
 
-   libpng-1.4.5-README.txt
-   libpng-1.4.5-LICENSE.txt
+   libpng-1.5.13-README.txt
+   libpng-1.5.13-LICENSE.txt
 
-Changes since the last public release (1.4.4):
+Changes since the last public release (1.5.12):
+  Do not compile PNG_DEPRECATED, PNG_ALLOC and PNG_PRIVATE when __GNUC__ < 3.
+  Removed references to png_zalloc() and png_zfree() from the manual.
+  Revised PNG_FP_EXPORT and PNG_FIXED_EXPORT macros to avoid generating
+    lone semicolons (patch ported from libpng-1.6.0beta11).
+  Corrected handling of the image array and the row_pointers array in example.c
+  When png_set_filler is used to strip a filler channel during write, the
+    code prior to 1.5 would ignore the case where the output required an
+    alpha channel or when the output was a palettized PNG.  In libpng-1.5 the
+    ignorance was lost and libpng proceeded to strip the channel resulting
+    in a bad (potential memory overwrite) failure later.  This reverts
+    the behavior to the pre-1.5 state but issues a warning. libpng-1.6 is
+    expected to issue an error on the erroneous png_set_filler call.
+  Use png_memset() consistently (pngmem.c contained some bare "memset" calls).
 
-  Fixed possible configure.ac bug introduced in version 1.4.4.
-  Wrapped long lines in CMakeLists.txt and introduced ${libpng_public_hdrs}
-  Check for out-of-range text compression mode in png_set_text().
-  Removed some extraneous parentheses that appeared in pngrutil.c of
-    libpng-1.4.3
-  Revised png_get_uint_32, png_get_int_32, png_get_uint_16 (Cosmin)
-  Moved reading of file signature into png_read_sig (Cosmin)
-  Fixed atomicity of chunk header serialization (Cosmin)
-  Added test for io_state in pngtest.c (Cosmin)
-  Added "#!/bin/sh" at the top of contrib/pngminim/*/gather.sh scripts.
-  Changes to remove gcc warnings (John Bowler)
-    Certain optional gcc warning flags resulted in warnings in libpng code.
-    With these changes only -Wconversion and -Wcast-qual cannot be turned on.
-    Changes are trivial rearrangements of code.  -Wconversion is not possible
-    for pngrutil.c (because of the widespread use of += et al on variables
-    smaller than (int) or (unsigned int)) and -Wcast-qual is not possible
-    with pngwio.c and pngwutil.c because the 'write' callback and zlib
-    compression both fail to declare their input buffers with 'const'.
-  Added comment about the potential API incompatibility of the
-    png_get_uint_16() macro with libpng-1.4.0 through 1.4.4.
-  Removed PNG_NO_WRITE_GAMMA from pngminim/encoder/pngusr.h
-
-Send comments/corrections/commendations to glennrp at users.sourceforge.net
-or to png-mng-implement at lists.sf.net (subscription required; visit
-https://lists.sourceforge.net/lists/listinfo/png-mng-implement).
+Send comments/corrections/commendations to png-mng-implement at lists.sf.net
+(subscription required; visit
+https://lists.sourceforge.net/lists/listinfo/png-mng-implement
+to subscribe)
+or to glennrp at users.sourceforge.net
 
 Glenn R-P

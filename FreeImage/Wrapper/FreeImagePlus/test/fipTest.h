@@ -24,6 +24,7 @@
 
 #include "../FreeImagePlus.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 #include <sys/stat.h>
 
