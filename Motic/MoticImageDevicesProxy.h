@@ -196,6 +196,8 @@ long  MIDP_GetCurCameraIndex();
 */
 long MIDP_GetCameraName( long idx, wchar_t*name, int len );
 
+//ASCII version
+long MIDP_GetCameraNameA(long idx, char*name, int len);
 /**
  * @brief 选择切换设备，切换设备后要重新获取分辨率与图像格式参数
  *        select to open camera by index, after invoke this function, all the resolutions and formats of image need to be Query again
@@ -285,16 +287,18 @@ long  MIDP_SelectResByIndex(long idx);
  */
 long MIDP_Capture(wchar_t*name);
 
+//ASCII version
+long MIDP_CaptureA(char* name);
 /**
  * @brief 设定自动曝光，
  *        Auto Exposure setting
- * @param bAuto 是否打开自动曝光，true打开，false关闭
+ * @param bAuto 是否打开自动曝光，1打开，2关闭
  *              Activate/deactivate Auto Exposure, true activate auto exposure, false deactivate auto exposure
  *
  * @return     0 成功; 否则失败
  *             0 succeed, otherwise failed.
  */
-long MIDP_AutoExposure(bool bAuto);
+long MIDP_AutoExposure(long bAuto);
 
 /**
  * @brief 查寻曝光值范围
@@ -336,6 +340,46 @@ long MIDP_SetExposureValue(long v);
  * @see    MIDP_GetExposureValueRange   
  */
 long MIDP_GetExposureValue(long* v);
+/**
+ * @brief 查寻曝光时间范围
+ *        query the range of exposure time
+ *
+ * @param  min 最小曝光时间(10us单位)
+ *             the minimum exposure time （ measurement in 10us)
+ *         max 最大曝光时间(10us单位)
+ *             the maximum exposure time （ measurement in 10us)
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ */
+long MIDP_GetExposureTimeRange(long* min, long* max);
+
+/**
+ * @brief 设定曝光时间(10us单位)
+ *        set exposure time （ measurement in 10us)
+ *
+ * @param  v  曝光时音（10us单位），必须在MIDP_GetExposureValueRange返回值范围内
+ *            exposure time ( measurement in 10us), must be one of value within the range return by MIDP_GetExposureValueRange
+ *
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ *
+ * @see    MIDP_GetExposureTimeRange   
+ */
+long MIDP_SetExposureTime(long v);
+
+/**
+ * @brief 获取曝光时间
+ *        get exposure time
+ *
+ * @param  v  返回的当前曝光时间（单位10us)
+ *            current exposure time （measurement in 10us) return.
+ *
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ *
+ * @see    MIDP_GetExposureTimeRange   
+ */
+long MIDP_GetExposureTime(long* v);
 
 /**
  * @brief 获取增益范围，如果硬件支持，这个范围就是硬件的增益，否则为软件增益
@@ -400,6 +444,21 @@ long MIDP_GetRGBGainRange(float*min, float*max);
 long MIDP_SetRGBGain(float r, float g, float b);
 
 /**
+ * @brief 获取亮度范围
+ *        Query the range of brightness
+ *
+ * @param  min 最小亮度，
+ *             minimum brightness
+ *         max 最大亮度
+ *             maximum brightness
+ *
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ *
+ */
+long MIDP_GetBrightnessRange(long*min, long*max);
+
+/**
  * @brief 设定亮度偏移, 默认值为0
  *        set offset of brightness, default value is 0
  *
@@ -411,6 +470,19 @@ long MIDP_SetRGBGain(float r, float g, float b);
  *
  */
 long MIDP_SetBrightness(long b);
+
+/**
+ * @brief 获取当前亮度偏移,
+ *        get current offset of brightness
+ *
+ * @param  b 亮度偏移值
+ *           offset value of brightness
+ *
+ * @return 0 成功; 否则失败
+ *         0 succeed, otherwise failed.
+ *
+ */
+long MIDP_GetBrightness(long* b);
 
 /**
  * @brief 设定RGB各颜色的亮度偏移, 默认值为0
@@ -445,6 +517,21 @@ long MIDP_SetRGBBrightness(long r, long g, long b);
 long MIDP_SetGamma(float g, long o);
 
 /**
+ * @brief 获取伽马值
+ *        get gamma
+ *
+ * @param  g 伽马值
+ *           gamma value
+ *         o 像素偏移，它为直方图增强下限值
+ *           offset of pixel, it is the lower limit value of histogram enhanc
+ *
+ * @return 0 成功; 否则失败
+ *         0 succeed, otherwise failed.
+ *
+ */
+long MIDP_GetGamma(float *g, long *o);
+
+/**
  * @brief 基于当前的图像计算并应用白平衡，一般情况下当前图像为背景时调用该函数。
           整个系统如果环境不变只要调用一次该函数，白平衡就会记忆在系统中，下次只要调用MIDP_ActivateWhiteBalance
  *        calculate the factors of whitebalance base on current image. normally, invoke this function once only 
@@ -468,7 +555,36 @@ long MIDP_DoWhiteBalance();
  *
  * @see MIDP_DoWhiteBalance
  */
-long MIDP_ActivateWhiteBalance();
+long MIDP_ActivateWhiteBalance(long act);
+
+/**
+ * @brief 设定白平衡参数，设定该参数后，直接调用MIDP_ActivateWhiteBalance，白平衡会依据给定的rgb来设定 *　　　　
+ *        Set WhiteBalance factors, the white balance will use the input r,g,b value adjust color balance.
+ *        You can invoke MIDP_ActivateWhiteBalance after setting these parameters
+ *
+ * @param  r,g,b 白平衡R,G,B因子，百分比数值
+ *               R,G,B factors for White Balance, with percent style.
+ * 
+ * @return 0 成功; 否则失败
+ *         0 succeed, otherwise failed.
+ *
+ * @see MIDP_ActivateWhiteBalance
+ */
+long MIDP_SetWBFactors(long r, long g, long b);
+
+/**
+ * @brief 获取白平衡参数，　　　　
+ *        Get WhiteBalance factors
+ *
+ * @param  r,g,b 白平衡R,G,B因子，百分比数值
+ *               R,G,B factors for White Balance, with percent style.
+ *
+ * @return 0 成功; 否则失败
+ *         0 succeed, otherwise failed.
+ *
+ * @see MIDP_SetWBFactors
+ */
+long MIDP_GetWBFactors(long *r, long *g, long *b);
 
 /**
  * @brief 设定色彩校正参数
@@ -483,33 +599,68 @@ long MIDP_ActivateWhiteBalance();
  */
 long MIDP_SetColorCorrection(long val);
 
+/**
+ * @brief 获取色彩校正参数
+ *        get Color Correction
+ *
+ * @param  val 色彩校正参数值.
+ *             value of color correction.
+ *
+ * @return 0 成功; 否则失败
+ *         0 succeed, otherwise failed.
+ *
+ */
+long MIDP_GetColorCorrection(long* val);
+
 
 /**
  * @brief 获取一帧图像数据的指定区域
- *        Get a image from current frame within a rectangle.
  *
  * @param buffer 缓冲区指针，必须足够容纳将取得的图像数据。
- *               The frame buffer, must be big enough for containing the image data.
  *        x      图像的水平起始位置 
- *               Specifies the x-coordinate of the upper-left corner of the image rectangle. 
  *        y      图像的垂直起始位置
-                 Specifies the y-coordinate of the upper-left corner of the image rectangle. 
  *        w      图像的宽度
-                 Specifies the width  of the destination image
  *        h      图像的高度
-                 Specifies the heigh of the destination image
  *        stride 缓冲区的行字节数
-                 specifies the byte offset between the beginning of one line and the next
  *        flip   是否须翻转图像
-                 if the image need to be flipped or not.
  *
  * @return     0 成功; 否则失败
  *             0 succeed, otherwise failed.
  *
- * @see   MIDP_GetFormat
+ * @see   MIDP_GetFormatEx
  */
 long MIDP_GetFrameEx(unsigned char* buffer, long x, long y, long w, long h, long stride, bool flip);
 /**
  * @undocumented
  */
 double MIDP_EvaluateFocusDegree24bits(unsigned char* buffer, long width, long height);
+
+/**
+ * @brief 获取一帧24bits图像数据
+ *        get one frame of image with 24bits
+ *
+ * @param buffer 24bits缓冲区指针，必须足够容纳将取得的图像数据。
+ *               The frame buffer for 24bits color depth, must be big enough for containing the image data.
+ *        w      图像宽度 
+ * 　　　　　　　width
+ *        h      图像高度
+ *               height 
+ *
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ *
+ */
+long MIDP_GetFrame24(unsigned char*buffer, long w, long h);
+
+/**
+ * @brief 设定图像的位深
+ *        Set bit depth of image data.
+ *
+ * @param bitcount 位深，取值为8与16
+ *                  Bit depth 8 or 16 bits
+ *
+ * @return     0 成功; 否则失败
+ *             0 succeed, otherwise failed.
+ *
+ */
+long MIDP_SetBitCount(long bitcount);
