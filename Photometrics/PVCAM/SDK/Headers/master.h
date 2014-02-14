@@ -4,11 +4,6 @@
 #ifndef _MASTER_H
 #define _MASTER_H
 
-#ifndef WIN32
-#error OS Not Supported
-#endif
-
-/******************************** ANSI Types *********************************/
 #if defined  __cplusplus
 
 // BORLAND   C++
@@ -24,7 +19,6 @@
 
 #endif
 
-
 #if defined  _MSC_VER
 
 // MICROSOFT C++   VS 2005 wants to use safe string
@@ -35,39 +29,11 @@
 
 #endif
 
+
 /**************************** Calling Conventions ****************************/
-
-#define PV_CDECL __cdecl
-
-#if 0  // for 64 bit...
-
-#if defined CDECL_CALL_CONV                      /* Use the '_cdecl' calling convention */
-#define PV_DECL __declspec(dllexport) PV_CDECL /*  or '__stdcall' calling convention  */
-#define PV_CALL_CONV PV_CDECL
-#else                                            /*  as appropriate.                    */
-#define PV_DECL __declspec(dllexport) __stdcall
-#define PV_CALL_CONV __stdcall
-#endif
-
-#define LIB_EXPORT __declspec(dllexport)
-
-#else
-
-#if defined CDECL_CALL_CONV                     // Use the '_cdecl' calling convention 
-#define PV_DECL PV_CDECL					//  or '__stdcall' calling convention 
-#define PV_CALL_CONV PV_CDECL
-#else                                           //  as appropriate.                    
 #define PV_DECL __stdcall
-#define PV_CALL_CONV __stdcall
-#endif
 
-#define LIB_EXPORT
-
-#endif
-
-/**************************** PVCAM Pointer Types ****************************/
 #define PV_PTR_DECL  *
-#define PV_BUFP_DECL *
 
 /******************************** PVCAM Types ********************************/
 enum { PV_FAIL, PV_OK };
@@ -81,8 +47,8 @@ typedef unsigned short uns16,   PV_PTR_DECL  uns16_ptr;
 typedef long           int32,   PV_PTR_DECL  int32_ptr;
 typedef unsigned long  uns32,   PV_PTR_DECL  uns32_ptr;
 typedef double         flt64,   PV_PTR_DECL  flt64_ptr;
-typedef void                    PV_BUFP_DECL void_ptr;
-typedef void_ptr                PV_BUFP_DECL void_ptr_ptr;
+typedef void                    PV_PTR_DECL  void_ptr;
+typedef void_ptr                PV_PTR_DECL  void_ptr_ptr;
 
 #if defined(_MSC_VER)
 typedef unsigned __int64 ulong64, PV_PTR_DECL ulong64_ptr;
@@ -111,7 +77,6 @@ typedef const flt64   PV_PTR_DECL flt64_const_ptr;
 #define TRUE   PV_OK        /* TRUE  == 1                                  */
 #endif
 
-#define BIG_ENDIAN    FALSE /* TRUE for Motorola byte order, FALSE for Intel */
 #define CAM_NAME_LEN     32 /* Max length of a cam name (includes null term) */
 #define PARAM_NAME_LEN   32 /* Max length of a pp param						 */
 
